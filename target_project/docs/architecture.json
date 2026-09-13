@@ -1,0 +1,35 @@
+{
+  "project_name": "url_shortener_service",
+  "tech_stack": {
+    "language": "Python 3.13",
+    "database": "SQLite3",
+    "framework": "Pure Python + Standard Library / Minimal REST"
+  },
+  "file_tree": [
+    "url_shortener/__init__.py",
+    "url_shortener/models.py",
+    "url_shortener/service.py",
+    "tests/__init__.py",
+    "tests/test_shortener.py"
+  ],
+  "api_contracts": {
+    "POST /shorten": {
+      "input": {
+        "url": "str"
+      },
+      "output": {
+        "short_code": "str"
+      }
+    },
+    "GET /{code}": {
+      "output": "307 redirect to target URL"
+    },
+    "GET /stats/{code}": {
+      "output": {
+        "clicks": "int"
+      }
+    }
+  },
+  "db_schema": "CREATE TABLE IF NOT EXISTS urls (code TEXT PRIMARY KEY, target_url TEXT, clicks INTEGER DEFAULT 0);",
+  "notes": "Modular, clean architecture with separation between storage and service layers."
+}
